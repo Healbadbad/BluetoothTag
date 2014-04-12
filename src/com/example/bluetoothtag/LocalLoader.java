@@ -11,13 +11,13 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.os.Bundle;
+import android.os.AsyncTask;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.ListView;
  
-public class MainActivity extends Activity {
+public class LocalLoader extends AsyncTask {
+	
+	Activity parent;
 	
 	protected static final String TAG = "com.example.bluetoothtag.MainActivity";
  
@@ -31,31 +31,14 @@ public class MainActivity extends Activity {
 	
 	private ListView deviceList;
 	
-	private HashMapter<String, String> devices;
+	private HashMap<String, Short> devices;
 	
 	private HashMap<String, Timer> expirations;
 	
 	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		if(requestCode == REQUEST_DISCOVERABLE) {
-			if(resultCode == RESULT_CANCELED) {
-				finish();
-			}
-		}
-	}
- 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
+	protected Object doInBackground(Object... params) {
 		
-		devices = new HashMapter<String, String>(this, android.R.layout.activity_list_item);
-		
-		//deviceList = (ListView) findViewById(R.id.device_list);
-		//deviceList.setAdapter(devices);
-		
-		//deviceList.setChoiceMode(AbsListView.CHOICE_MODE_MULTIPLE);
-		//deviceList.setOnItemClickListener(this);
+//		devices = new HashMapter<String, String>(this, android.R.layout.activity_list_item);
 		
 		bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 		
@@ -63,7 +46,7 @@ public class MainActivity extends Activity {
 			Intent discoverableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
 			discoverableIntent.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, 0);
 			
-			startActivityForResult(discoverableIntent, REQUEST_DISCOVERABLE);
+//			startActivityForResult(discoverableIntent, REQUEST_DISCOVERABLE);
 		}
 		
 		expirations = new HashMap<String, Timer>();
@@ -74,8 +57,9 @@ public class MainActivity extends Activity {
 			public void onReceive(Context context, Intent intent) {
 				final String name = intent.getStringExtra(BluetoothDevice.EXTRA_NAME);
 				final Short rssi = intent.getShortExtra(BluetoothDevice.EXTRA_RSSI, (short) 0);
-				if(devices.getCount() > 1)Log.d("bluetoothtag","its happening" + name + rssi);
-				devices.put(name, name);
+//				final String mac = intent.getStringExtra(BluetoothDevice.);
+//				if(devices.getCount() > 1)Log.d("bluetoothtag","its happening" + name + rssi);
+				devices.put(name, rssi);
 				
 				Timer timer = expirations.get(name);
 				
@@ -88,38 +72,21 @@ public class MainActivity extends Activity {
 				timer.schedule(new TimerTask() {
 					@Override
 					public void run() {
-						runOnUiThread(new Runnable() {
-							@Override
-							public void run() {
+//						runOnUiThread(new Runnable() {
+//							@Override
+//							public void run() {
 								devices.remove(name);
-							}
-						});
-					}
+//							}
+						};//)
+					//}
 				}, 5000);
 				
 				expirations.put(name, timer);
 			}
 		};
-	}
- 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
- 
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
-	}
- 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			return true;
-		}
-		return super.onOptionsItemSelected(item);
+		
+		
+		return null;
 	}
  
 	@Override
@@ -131,7 +98,7 @@ public class MainActivity extends Activity {
 		if(bluetoothAdapter.isDiscovering())
 			bluetoothAdapter.cancelDiscovery();
 		
-		unregisterReceiver(receiver);
+		parent.unregisterReceiver(receiver);
 	}
  
 	@Override
@@ -149,19 +116,12 @@ public class MainActivity extends Activity {
 			}
 		}, 0, 1000);
 		
-		registerReceiver(receiver, new IntentFilter(BluetoothDevice.ACTION_FOUND));
+		parent.registerReceiver(receiver, new IntentFilter(BluetoothDevice.ACTION_FOUND));
 	}
- 
-	@Override
+ 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
 		
 		bluetoothAdapter.cancelDiscovery();
 	}
- 
-//	@Override
-//	public void onItemClick(AdapterView<?> parent, View view, int position,
-//			long id) {
-//			deviceList.clearChoices();
-//	}
 }

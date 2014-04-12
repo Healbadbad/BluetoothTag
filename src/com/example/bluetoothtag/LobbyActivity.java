@@ -3,6 +3,7 @@ import java.util.HashMap;
 import java.util.Timer;
 import java.util.TimerTask;
 
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
@@ -15,9 +16,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
  
-public class MainActivity extends Activity {
+public class LobbyActivity extends Activity {
 	
 	protected static final String TAG = "com.example.bluetoothtag.MainActivity";
  
@@ -47,6 +49,7 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
 		setContentView(R.layout.activity_main);
 		
 		devices = new HashMapter<String, String>(this, android.R.layout.activity_list_item);
@@ -67,14 +70,15 @@ public class MainActivity extends Activity {
 		}
 		
 		expirations = new HashMap<String, Timer>();
-		
+		ListView lv = new ListView(this);
+		lv.setAdapter(devices);
 		receiver = new BroadcastReceiver() {
 			@SuppressLint("InlinedApi")
 			@Override
 			public void onReceive(Context context, Intent intent) {
 				final String name = intent.getStringExtra(BluetoothDevice.EXTRA_NAME);
 				final Short rssi = intent.getShortExtra(BluetoothDevice.EXTRA_RSSI, (short) 0);
-				if(devices.getCount() > 1)Log.d("bluetoothtag","its happening" + name + rssi);
+//				if(devices.getCount() > 1)Log.d("bluetoothtag","its happening" + name + rssi);
 				devices.put(name, name);
 				
 				Timer timer = expirations.get(name);
@@ -100,6 +104,7 @@ public class MainActivity extends Activity {
 				expirations.put(name, timer);
 			}
 		};
+		this.setContentView(lv);
 	}
  
 	@Override
