@@ -3,6 +3,9 @@
 
     <string name="app_name">BluetoothTag</string>
     <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="Create_Game">Create Game</string>
+    <string name="Join_Game">Join Game</string>
+    
+    
 
 </resources>
