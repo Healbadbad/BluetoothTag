@@ -5,6 +5,11 @@
     <string name="action_settings">Settings</string>
     <string name="Create_Game">Create Game</string>
     <string name="Join_Game">Join Game</string>
+    <string-array name="game_types"><item name="tag" format="string" type="string">Tag</item><item>Freeze Tag</item>
+        
+    
+    </string-array>
+    
     
     
 

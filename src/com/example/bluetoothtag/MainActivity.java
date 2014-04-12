@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ListView;
  
 public class MainActivity extends Activity {
@@ -157,6 +158,15 @@ public class MainActivity extends Activity {
 		super.onDestroy();
 		
 		bluetoothAdapter.cancelDiscovery();
+	}
+	
+	public void sendGameRequest(View view) {
+		Intent intent = new Intent(this, GameChooserActivity.class);
+		startActivity(intent);
+	}
+	
+	public void findGameRequest(View view) {
+		System.out.println("AAAAAAAAAAAAAHHHHHHHHHHHHHHHHHHHH");
 	}
  
 //	@Override

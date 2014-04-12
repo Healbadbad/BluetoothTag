@@ -23,8 +23,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/Create"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
+        android:layout_alignRight="@+id/Create"
+        android:layout_below="@+id/Create"
         android:onClick="findGameRequest"
         android:text="@string/Join_Game" />
 
