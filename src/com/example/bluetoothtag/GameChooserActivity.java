@@ -7,9 +7,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 public class GameChooserActivity extends Activity {
-    private String[] mPlanetTitles;
-    private DrawerLayout mDrawerLayout;
-    private ListView mDrawerList;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
