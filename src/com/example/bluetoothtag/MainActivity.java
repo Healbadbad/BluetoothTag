@@ -20,7 +20,7 @@ import android.widget.ListView;
  
 public class MainActivity extends Activity {
 	
-	protected static final String TAG = "com.dagwaging.bluetag.MainActivity";
+	protected static final String TAG = "com.example.bluetoothtag.MainActivity";
  
 	private static final int REQUEST_DISCOVERABLE = 1;
  
