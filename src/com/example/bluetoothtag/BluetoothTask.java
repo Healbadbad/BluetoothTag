@@ -58,7 +58,7 @@ public class BluetoothTask extends
 			@Override
 			public void onReceive(Context context, Intent intent) {
 				final String name = intent
-						.getStringExtra(BluetoothDevice.EXTRA_NAME);
+						.getStringExtra(BluetoothDevice.EXTRA_NAME);// XTRA_Device intent.getparseableextra
 				final Short rssi = intent.getShortExtra(
 						BluetoothDevice.EXTRA_RSSI, (short) 0);
 				if (devices.size() > 1)
