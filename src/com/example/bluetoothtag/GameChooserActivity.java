@@ -1,6 +1,7 @@
 package com.example.bluetoothtag;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -16,7 +17,16 @@ public class GameChooserActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.gamechooser);
+		
+		View peopleJoined = findViewById(R.id.PeopleCount);
 	}
+	
+	public void startGame(View view) {
+		Intent intent = new Intent(this, GamePlayingActivity.class);
+		startActivity(intent);
+	}
+	
+	
 	
 	// Throw the Bluetooth host information here.
 	// From here, I'd imagine the data needs to be sent to the server about the game.

@@ -166,7 +166,8 @@ public class MainActivity extends Activity {
 	}
 	
 	public void findGameRequest(View view) {
-		System.out.println("AAAAAAAAAAAAAHHHHHHHHHHHHHHHHHHHH");
+		Intent intent = new Intent(this, GameJoinActivity.class);
+		startActivity(intent);
 	}
  
 //	@Override
