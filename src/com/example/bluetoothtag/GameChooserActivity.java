@@ -1,21 +1,28 @@
 package com.example.bluetoothtag;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
+import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
-import android.widget.ListView;
 
 public class GameChooserActivity extends Activity {
+	BluetoothTask loader;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.gamechooser);
+		
+		View peopleJoined = findViewById(R.id.PeopleCount);
+		
+		loader = new BluetoothTask();
+		loader.parent = this;
+		loader.execute(this);
+		Log.d("bluetoothetag","Started the asyncTask");
+	}
+	public void startGame(View view) {
+		Intent intent = new Intent(this, GamePlayingActivity.class);
+		startActivity(intent);
 	}
 	
 	// Throw the Bluetooth host information here.
@@ -23,5 +30,9 @@ public class GameChooserActivity extends Activity {
 	// Then when others search online for the info about a player and they find the similar bluetooth address,
 	// That address is searched for on the server.
 	// From there, a game is created. 
+	protected void onPause(){
+		super.onPause();
+		loader.cancel(true);
+	}
 	
 }
