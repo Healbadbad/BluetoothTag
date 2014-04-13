@@ -20,10 +20,6 @@ public class GameChooserActivity extends Activity {
 		loader.execute(this);
 		Log.d("bluetoothetag","Started the asyncTask");
 	}
-	public void startGame(View view) {
-		Intent intent = new Intent(this, GamePlayingActivity.class);
-		startActivity(intent);
-	}
 	
 	public void startGame(View view) {
 		Intent intent = new Intent(this, GamePlayingActivity.class);
