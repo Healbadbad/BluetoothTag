@@ -25,7 +25,8 @@
         android:layout_alignParentRight="true"
         android:layout_below="@+id/tagtitle"
         android:layout_marginTop="15dp"
-        android:text="Start Tag Game!" />
+        android:text="Start Tag Game!"
+        android:onClick="startGame" />
 
     <TextView
         android:id="@+id/textView1"
@@ -69,21 +70,12 @@
         android:layout_marginTop="76dp" />
 
     <TextView
-        android:id="@+id/playercount"
+        android:id="@+id/PeopleCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/progressBar1"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="28dp"
         android:text="0" />
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/playercount"
-        android:layout_centerHorizontal="true"
-        android:text="Players"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
 
     </RelativeLayout>
