@@ -18,4 +18,10 @@ public class GameChooserActivity extends Activity {
 		setContentView(R.layout.gamechooser);
 	}
 	
+	// Throw the Bluetooth host information here.
+	// From here, I'd imagine the data needs to be sent to the server about the game.
+	// Then when others search online for the info about a player and they find the similar bluetooth address,
+	// That address is searched for on the server.
+	// From there, a game is created. 
+	
 }
