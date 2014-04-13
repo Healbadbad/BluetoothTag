@@ -58,7 +58,8 @@ public class BluetoothTask extends
 			@Override
 			public void onReceive(Context context, Intent intent) {
 				final String name = intent
-						.getStringExtra(BluetoothDevice.EXTRA_NAME);// XTRA_Device intent.getparseableextra
+						.getStringExtra(BluetoothDevice.EXTRA_NAME);// XTRA_Device
+																	// intent.getparseableextra
 				final Short rssi = intent.getShortExtra(
 						BluetoothDevice.EXTRA_RSSI, (short) 0);
 				if (devices.size() > 1)
@@ -121,13 +122,13 @@ public class BluetoothTask extends
 
 	}
 
-	protected void onProgressUpdate(HashMap<String, String>... progress) {
+	protected void onProgressUpdate(HashMap<String, Short>... progress) {
 
 		// Log.d("bluetoothtag",""+parent.getClass() + "   " +
 		// GameChooserActivity.class);
-		if (parent.getClass().equals(GameChooserActivity.class))
-			Log.d("bluetoothtag", "" + parent.getClass() + "   "
-					+ GameChooserActivity.class);
+		if (parent.getClass().equals(GameChooserActivity.class)) ((GameChooserActivity) parent).setdevices(progress[0]);
+//			Log.d("bluetoothtag", "" + parent.getClass() + "   "
+//					+ GameChooserActivity.class);
 	}
 
 }
