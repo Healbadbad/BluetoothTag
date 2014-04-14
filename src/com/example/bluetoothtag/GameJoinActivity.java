@@ -30,8 +30,7 @@ public class GameJoinActivity extends Activity {
 		Log.d("bluetoothtag","set the def layout gamechooser");
 //		View peopleJoined = findViewById(R.id.PeopleCount);
 		
-		loader = new BluetoothTask();
-		loader.parent = this;
+		
 		Log.d("bluetoothtag","Started the asyncTask");
 		
 		adapter = new ArrayAdapter<String>(this, R.layout.activity_list_item);
@@ -45,7 +44,7 @@ public class GameJoinActivity extends Activity {
 			}
 		});
 		this.setContentView(lv);// Want it to display lobby, so need to start lobby with current host, blank lobby, blank it, need startgame button
-		loader.execute(this);
+//		loader.execute(this);
 //		adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,players);
 	}
 	@SuppressLint("NewApi")
@@ -54,7 +53,7 @@ public class GameJoinActivity extends Activity {
 		adapter.addAll(findhosts());
 		adapter.notifyDataSetChanged();
 	}
-	private String[] findhosts(){
+	private ArrayList<String> findhosts(){
 		Firebase ref = new Firebase("https://blistering-fire-1807.firebaseio.com/");
 		ref.addValueEventListener(new ValueEventListener() {
 			@Override
@@ -76,12 +75,7 @@ public class GameJoinActivity extends Activity {
 				}
 			}
 		}
-		int n = hosts.size();
-		String[] list = new String[n];
-		for(int i =0;i<n;i++){
-			list[i] = hosts.get(i);
-		}
-		return list;
+		return hosts;
 	}
 	
 	public void startLobby(String host) {
@@ -101,6 +95,12 @@ public class GameJoinActivity extends Activity {
 	protected void onPause(){
 		super.onPause();
 		loader.cancel(true);
+	}
+	protected void onResume(){
+		super.onResume();
+		loader = new BluetoothTask();
+		loader.parent = this;
+		loader.execute(this);
 	}
 	
 }
