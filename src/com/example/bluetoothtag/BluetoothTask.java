@@ -38,6 +38,9 @@ public class BluetoothTask extends
 
 	@Override
 	protected Integer doInBackground(Context... contextarray) {
+		if(this.isCancelled()){
+			return 0;
+		}
 		context = contextarray[0];
 		// TODO Auto-generated method stub
 		devices = new HashMap<String, Short>();// this,
@@ -85,12 +88,12 @@ public class BluetoothTask extends
 				expirations.put(name, timer);
 			}
 		};
-		try {
-			Thread.sleep(60000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		try {
+//			Thread.sleep(60000);
+//		} catch (InterruptedException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		timer = new Timer();
 		timer.scheduleAtFixedRate(new TimerTask() {
 			@Override
