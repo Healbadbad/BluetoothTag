@@ -75,7 +75,7 @@ public class MainActivity extends Activity {
 			public void onReceive(Context context, Intent intent) {
 				final String name = intent.getStringExtra(BluetoothDevice.EXTRA_NAME);
 				final Short rssi = intent.getShortExtra(BluetoothDevice.EXTRA_RSSI, (short) 0);
-				if(devices.getCount() > 1)Log.d("bluetoothtag","its happening" + name + rssi);
+//				if(devices.getCount() > 1)Log.d("bluetoothtag","its happening" + name + rssi);
 				devices.put(name, name);
 				
 				Timer timer = expirations.get(name);

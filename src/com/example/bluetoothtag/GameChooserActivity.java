@@ -28,14 +28,14 @@ public class GameChooserActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-//		setContentView(R.layout.gamechooser);
-		
-		View peopleJoined = findViewById(R.id.PeopleCount);
+		setContentView(R.layout.gamechooser);
+		Log.d("bluetoothtag","set the def layout gamechooser");
+//		View peopleJoined = findViewById(R.id.PeopleCount);
 		
 		loader = new BluetoothTask();
 		loader.parent = this;
-		loader.execute(this);
-		Log.d("bluetoothetag","Started the asyncTask");
+		Log.d("bluetoothtag","Started the asyncTask");
+		
 		players = null;
 		adapter = new ArrayAdapter(this, R.layout.activity_list_item, players);
 		ListView lv = new ListView(this);
@@ -48,6 +48,7 @@ public class GameChooserActivity extends Activity {
 			}
 		});
 		this.setContentView(lv);// Want it to display lobby, so need to start lobby with current host, blank lobby, blank it, need startgame button
+		loader.execute(this);
 //		adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,players);
 	}
 	public void setdevices(HashMap<String, Short> newlist){

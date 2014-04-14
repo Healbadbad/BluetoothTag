@@ -52,7 +52,7 @@ public class BluetoothTask extends
 		bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 
 		expirations = new HashMap<String, Timer>();
-
+		Log.d("bluetoothtag","initialized the asynctask");
 		receiver = new BroadcastReceiver() {
 			@SuppressLint("InlinedApi")
 			@Override
@@ -85,27 +85,37 @@ public class BluetoothTask extends
 				expirations.put(name, timer);
 			}
 		};
-
-		timer = new Timer();
-		timer.scheduleAtFixedRate(new TimerTask() {
-			@Override
-			public void run() {
-				if (bluetoothAdapter.isDiscovering())
-					bluetoothAdapter.cancelDiscovery();
-
-				bluetoothAdapter.startDiscovery();
-				publishProgress(devices);
-			}
-		}, 0, 1000);
-
-		context.registerReceiver(receiver, new IntentFilter(
-				BluetoothDevice.ACTION_FOUND));
 		try {
 			Thread.sleep(60000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		timer = new Timer();
+		timer.scheduleAtFixedRate(new TimerTask() {
+			@Override
+			public void run() {
+				Log.i("bluetoothtag","in run");
+				if (bluetoothAdapter.isDiscovering())
+					bluetoothAdapter.cancelDiscovery();
+
+				bluetoothAdapter.startDiscovery();
+				//publishProgress(devices);
+			}
+		}, 0, 1000);
+		Log.d("bluetoothtag","started timers");
+		context.registerReceiver(receiver, new IntentFilter(
+				BluetoothDevice.ACTION_FOUND));
+		Log.d("bluetoothtag","registered receiver");
+		try {
+			Thread.sleep(60000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (RuntimeException e){
+			//
+		}
+		Log.d("bluetoothtag","initialized loops");
 		return null;
 
 		// bluetoothAdapter.cancelDiscovery();
@@ -115,6 +125,7 @@ public class BluetoothTask extends
 	@Override
 	protected void onCancelled() {
 		super.onCancelled();
+		Log.w("bluetoothtag","cancelling asynctask");
 		timer.cancel();
 		context.unregisterReceiver(receiver);
 		if (bluetoothAdapter.isDiscovering())
@@ -126,9 +137,12 @@ public class BluetoothTask extends
 
 		// Log.d("bluetoothtag",""+parent.getClass() + "   " +
 		// GameChooserActivity.class);
+		Log.d("bluetoothtag","sending bluetooth list");
 		if (parent.getClass().equals(GameChooserActivity.class)) ((GameChooserActivity) parent).setdevices(progress[0]);
 //			Log.d("bluetoothtag", "" + parent.getClass() + "   "
 //					+ GameChooserActivity.class);
+		Log.d("bluetoothtag","sent the device list data");
+
 	}
 
 }
