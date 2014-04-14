@@ -6,6 +6,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@drawable/bg"
     tools:context=".MainActivity" >
 
     <Button
@@ -16,6 +17,9 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:onClick="sendGameRequest"
+        android:background="@drawable/purple_button_custom"
+        android:textColor="@android:color/white"
+        android:textSize="25sp"
         android:text="@string/Create_Game" />
 
     <Button
@@ -23,9 +27,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/Create"
-        android:layout_alignRight="@+id/Create"
         android:layout_below="@+id/Create"
+        android:layout_marginTop="14dp"
+        android:background="@drawable/purple_button_custom"
         android:onClick="findGameRequest"
-        android:text="@string/Join_Game" />
+        android:text="@string/Join_Game"
+        android:textColor="@android:color/white"
+        android:textSize="25sp" />
 
 </RelativeLayout>
