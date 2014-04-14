@@ -161,7 +161,7 @@ public class MainActivity extends Activity {
 	}
 	
 	public void sendGameRequest(View view) {
-		Intent intent = new Intent(this, GameChooserActivity.class);
+		Intent intent = new Intent(this, GameJoinActivity.class);
 		startActivity(intent);
 	}
 	

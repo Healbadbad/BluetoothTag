@@ -138,7 +138,7 @@ public class BluetoothTask extends
 		// Log.d("bluetoothtag",""+parent.getClass() + "   " +
 		// GameChooserActivity.class);
 		Log.d("bluetoothtag","sending bluetooth list");
-		if (parent.getClass().equals(GameChooserActivity.class)) ((GameChooserActivity) parent).setdevices(progress[0]);
+		if (parent.getClass().equals(GameJoinActivity.class)) ((GameJoinActivity) parent).setdevices(progress[0]);
 //			Log.d("bluetoothtag", "" + parent.getClass() + "   "
 //					+ GameChooserActivity.class);
 		Log.d("bluetoothtag","sent the device list data");
