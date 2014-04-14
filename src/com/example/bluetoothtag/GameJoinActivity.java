@@ -2,7 +2,7 @@ package com.example.bluetoothtag;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,7 +13,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
-
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
@@ -23,8 +22,7 @@ public class GameJoinActivity extends Activity {
 	BluetoothTask loader;
 	HashMap<String,Short> devices = new HashMap<String,Short>();
 	HashMap<String,HashMap<String,String>> Firedata = new HashMap<String,HashMap<String,String>>();
-	ArrayAdapter adapter;
-	String[] players;
+	ArrayAdapter<String> adapter;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -36,8 +34,7 @@ public class GameJoinActivity extends Activity {
 		loader.parent = this;
 		Log.d("bluetoothtag","Started the asyncTask");
 		
-		players = null;
-		adapter = new ArrayAdapter(this, R.layout.activity_list_item, players);
+		adapter = new ArrayAdapter<String>(this, R.layout.activity_list_item);
 		ListView lv = new ListView(this);
 		lv.setAdapter(adapter);// maybe want to add a click handler to kick people here?
 		lv.setOnItemClickListener(new OnItemClickListener() {
@@ -51,9 +48,10 @@ public class GameJoinActivity extends Activity {
 		loader.execute(this);
 //		adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,players);
 	}
+	@SuppressLint("NewApi")
 	public void setdevices(HashMap<String, Short> newlist){
 		this.devices = newlist;
-		players = findhosts();
+		adapter.addAll(findhosts());
 		adapter.notifyDataSetChanged();
 	}
 	private String[] findhosts(){
