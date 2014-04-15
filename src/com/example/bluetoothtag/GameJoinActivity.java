@@ -102,5 +102,9 @@ public class GameJoinActivity extends Activity {
 		loader.parent = this;
 		loader.execute(this);
 	}
+	protected void onDestroy(){
+		super.onDestroy();
+		
+	}
 	
 }
