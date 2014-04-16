@@ -15,7 +15,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/starttag"
-        android:text="- At the beginning of one game, one person is &quot;it&quot;." />
+        android:text="- At the beginning of one game, one person is &quot;it&quot;."
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/textView2"
@@ -23,7 +24,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/textView1"
-        android:text="- The person that is &quot;it&quot; tries to come within a close proximity of other players so that they will be &quot;it&quot;." />
+        android:text="- The person that is &quot;it&quot; tries to come within a close proximity of other players so that they will be &quot;it&quot;."
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/textView4"
@@ -31,7 +33,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/textView2"
-        android:text="- The person who was last &quot;it&quot; cannot be tagged until another person has been tagged." />
+        android:text="- The person who was last &quot;it&quot; cannot be tagged until another person has been tagged."
+        android:textSize="20sp" />
+
+
 
     <TextView
         android:id="@+id/textView3"
@@ -39,46 +44,28 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/textView4"
-        android:text="- The game can last as long as you want." />
-
-    <ProgressBar
-        android:id="@+id/progressBar1"
-        style="?android:attr/progressBarStyleLarge"
+        android:text="- The game can last as long as you want."
+        android:textSize="20sp" />
+    
+    <Button
+        android:id="@+id/starttag"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView3"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="76dp" />
-
-    <TextView
-        android:id="@+id/PeopleCount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/progressBar1"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="28dp"
-        android:text="0" />
+        android:layout_alignLeft="@+id/textView1"
+        android:layout_alignRight="@+id/textView1"
+        android:layout_below="@+id/tagtitle"
+        android:onClick="startGame"
+        android:text="Start Tag Game"
+        android:textSize="36sp" />
 
     <TextView
         android:id="@+id/tagtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_alignRight="@+id/progressBar1"
+        android:layout_centerHorizontal="true"
         android:text="Tag"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="40sp" />
-
-    <Button
-        android:id="@+id/starttag"
-        android:layout_width="wrap_content"
-        android:layout_height="100dp"
-        android:layout_alignLeft="@+id/textView1"
-        android:layout_below="@+id/tagtitle"
-        android:background="@drawable/purple_button_custom"
-        android:onClick="startGame"
-        android:textColor="@android:color/white"
-        android:textSize="25sp"
-        android:text="Start Tag Game" />
 
 </RelativeLayout>

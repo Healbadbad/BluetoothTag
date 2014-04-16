@@ -142,6 +142,7 @@ public class MainActivity extends Activity {
 //		timer = new Timer();
 //		timer.scheduleAtFixedRate(new TimerTask() {
 //			@Override
+		
 //			public void run() {
 //				if(bluetoothAdapter.isDiscovering())
 //					bluetoothAdapter.cancelDiscovery();
@@ -149,6 +150,7 @@ public class MainActivity extends Activity {
 //				bluetoothAdapter.startDiscovery();
 //			}
 //		}, 0, 1000);
+		
 //		
 //		registerReceiver(receiver, new IntentFilter(BluetoothDevice.ACTION_FOUND));
 	}
