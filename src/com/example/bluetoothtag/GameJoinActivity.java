@@ -44,12 +44,14 @@ public class GameJoinActivity extends Activity {
 			}
 		});
 		this.setContentView(lv);// Want it to display lobby, so need to start lobby with current host, blank lobby, blank it, need startgame button
-//		loader.execute(this);
+		this.setTitle("Nearby Lobbies");
+		//		loader.execute(this);
 //		adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,players);
 	}
 	@SuppressLint("NewApi")
 	public void setdevices(HashMap<String, Short> newlist){
 		this.devices = newlist;
+		adapter.clear();
 		adapter.addAll(findhosts());
 		adapter.notifyDataSetChanged();
 	}
@@ -95,6 +97,7 @@ public class GameJoinActivity extends Activity {
 	protected void onPause(){
 		super.onPause();
 		loader.cancel(true);
+		
 	}
 	protected void onResume(){
 		super.onResume();

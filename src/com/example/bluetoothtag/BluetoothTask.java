@@ -103,7 +103,7 @@ public class BluetoothTask extends
 					bluetoothAdapter.cancelDiscovery();
 
 				bluetoothAdapter.startDiscovery();
-				//publishProgress(devices);
+				publishProgress(devices);
 			}
 		}, 0, 1000);
 		Log.d("bluetoothtag","started timers");
